@@ -10,9 +10,17 @@
 
 <body>
 
+<!-- FLOATING PIXEL STARS -->
+<div class="stars">
+  <span>✦</span>
+  <span>✧</span>
+  <span>★</span>
+  <span>✦</span>
+  <span>✧</span>
+</div>
+
 <div class="desktop">
 
-  <!-- WINDOW CONTAINER -->
   <div class="window">
 
     <!-- TOP BAR -->
@@ -22,8 +30,13 @@
         <span class="dot yellow"></span>
         <span class="dot green"></span>
       </div>
+
       <div class="window-title">DJ RAYVINO — LIVE</div>
-      <div class="window-status">ONLINE ● SYSTEM ACTIVE</div>
+
+      <div class="window-status">
+        <span class="online-dot"></span>
+        <span class="online-text">ONLINE</span>
+      </div>
     </div>
 
     <div class="window-body">
@@ -57,15 +70,19 @@
 
       </aside>
 
-      <!-- MAIN CONTENT -->
+      <!-- MAIN -->
       <main class="main">
 
         <!-- HERO -->
         <section class="hero">
           <div class="hero-overlay"></div>
           <div class="hero-content">
-            <h1>SELECT. TRANSMIT. MOVE.</h1>
+            <h1 class="glitch" data-text="SELECT. TRANSMIT. MOVE.">
+              SELECT. TRANSMIT. MOVE.
+            </h1>
+
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+
             <div class="hero-buttons">
               <a href="#" class="btn primary">VIEW PORTFOLIO</a>
               <a href="#" class="btn secondary">BOOK NOW</a>
@@ -76,7 +93,7 @@
         <!-- ABOUT PREVIEW -->
         <section class="section">
           <h3>ABOUT THE SELECTOR</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut eros vitae massa tempor ullamcorper. Integer non luctus lorem. Sed sit amet.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut eros vitae massa tempor ullamcorper.</p>
           <a href="#" class="link">FULL BIO →</a>
         </section>
 
@@ -91,7 +108,7 @@
           </ul>
         </section>
 
-        <!-- JOURNAL PREVIEW -->
+        <!-- TERMINAL -->
         <section class="section terminal">
           <p>> log_02.27.26</p>
           <p>> Lorem ipsum dolor sit amet</p>
@@ -104,6 +121,14 @@
 
   </div>
 
+</div>
+
+<!-- MYSPACE STYLE MUSIC BAR -->
+<div class="music-bar">
+  <div class="track-info">
+    ▶ Now Playing: demo_track.mp3
+  </div>
+  <div class="progress"></div>
 </div>
 
 </body>
