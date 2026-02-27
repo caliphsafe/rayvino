@@ -4,7 +4,7 @@
 
 :root {
 
-  /* Colors */
+  /* COLORS */
   --black-stage: #05050a;
   --deep-navy: #0b0f1f;
   --red-accent: #c1121f;
@@ -13,24 +13,24 @@
   --white-text: #f2f2f2;
   --chrome-gray: #9a9a9a;
 
-  /* Typography */
+  /* TYPOGRAPHY */
   --font-primary: 'Inter', sans-serif;
   --font-retro: 'Courier New', monospace;
 
-  /* Spacing */
+  /* SPACING SYSTEM */
   --space-xs: 6px;
   --space-sm: 12px;
   --space-md: 20px;
   --space-lg: 32px;
   --space-xl: 60px;
 
-  /* Radius (reduced for older web feel) */
+  /* RADIUS */
   --radius-md: 6px;
 
 }
 
 /* =========================
-   BASE
+   BASE RESET
 ========================= */
 
 * {
@@ -46,10 +46,17 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+
+  /* Custom retro cursor */
+  cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur116.cur'), auto;
+}
+
+a, .btn, .file-list li {
+  cursor: pointer;
 }
 
 /* =========================
-   STAGE GLOW (SUBTLE)
+   STAGE GLOW ANIMATION
 ========================= */
 
 body::before {
@@ -94,6 +101,38 @@ body::after {
 }
 
 /* =========================
+   FLOATING PIXEL STARS
+========================= */
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  font-family: var(--font-retro);
+  color: var(--purple-glow);
+}
+
+.stars span {
+  position: absolute;
+  animation: floatStars 12s linear infinite;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.stars span:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+.stars span:nth-child(2) { top: 40%; left: 70%; animation-delay: 3s; }
+.stars span:nth-child(3) { top: 75%; left: 30%; animation-delay: 6s; }
+.stars span:nth-child(4) { top: 20%; left: 85%; animation-delay: 2s; }
+.stars span:nth-child(5) { top: 60%; left: 5%; animation-delay: 4s; }
+
+@keyframes floatStars {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+/* =========================
    DESKTOP WRAPPER
 ========================= */
 
@@ -104,7 +143,7 @@ body::after {
 }
 
 /* =========================
-   WINDOW (More Old Web)
+   WINDOW
 ========================= */
 
 .window {
@@ -119,7 +158,7 @@ body::after {
 }
 
 /* =========================
-   WINDOW BAR (Retro Feel)
+   WINDOW BAR
 ========================= */
 
 .window-bar {
@@ -153,9 +192,26 @@ body::after {
   text-transform: uppercase;
 }
 
-.window-status {
+/* ONLINE BLINK */
+
+.online-dot {
+  width: 8px;
+  height: 8px;
+  background: #00ff66;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+.online-text {
   font-size: 11px;
-  opacity: 0.7;
+  font-family: var(--font-retro);
 }
 
 /* =========================
@@ -168,7 +224,7 @@ body::after {
 }
 
 /* =========================
-   SIDEBAR (More MySpace)
+   SIDEBAR
 ========================= */
 
 .sidebar {
@@ -199,8 +255,6 @@ body::after {
   opacity: 0.7;
 }
 
-/* NAV LINKS (Old Web Style) */
-
 .nav-links {
   display: flex;
   flex-direction: column;
@@ -220,8 +274,6 @@ body::after {
   color: var(--red-accent);
   text-shadow: 0 0 6px var(--red-accent);
 }
-
-/* MODULE BOXES */
 
 .module {
   margin-bottom: var(--space-md);
@@ -274,20 +326,44 @@ body::after {
   max-width: 550px;
 }
 
-.hero h1 {
+/* GLITCH EFFECT */
+
+.glitch {
+  position: relative;
   font-size: 36px;
   margin-bottom: var(--space-sm);
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+
+.glitch:hover::before {
+  color: var(--red-accent);
+  transform: translate(-2px, -2px);
+  opacity: 0.8;
+}
+
+.glitch:hover::after {
+  color: var(--blue-link);
+  transform: translate(2px, 2px);
+  opacity: 0.8;
+}
+
+/* BUTTONS */
+
 .hero-buttons {
   margin-top: var(--space-md);
   display: flex;
   gap: var(--space-sm);
 }
-
-/* BUTTONS (Less Modern, More Bold) */
 
 .btn {
   padding: 10px 18px;
@@ -335,8 +411,6 @@ body::after {
   color: var(--purple-glow);
 }
 
-/* FILE LIST */
-
 .file-list {
   list-style: none;
   font-family: var(--font-retro);
@@ -345,7 +419,6 @@ body::after {
 .file-list li {
   padding: 6px 0;
   border-bottom: 1px dotted var(--chrome-gray);
-  cursor: pointer;
 }
 
 .file-list li:hover {
@@ -361,6 +434,51 @@ body::after {
   font-size: 12px;
   color: #00ff88;
   border: 2px solid var(--chrome-gray);
+}
+
+/* =========================
+   MUSIC BAR
+========================= */
+
+.music-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, #111, #1a1a1a);
+  border-top: 2px solid var(--chrome-gray);
+  padding: 8px 16px;
+  font-family: var(--font-retro);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+}
+
+.track-info {
+  color: var(--red-accent);
+}
+
+.progress {
+  width: 200px;
+  height: 4px;
+  background: #333;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 40%;
+  background: var(--purple-glow);
+  animation: progressMove 6s linear infinite;
+}
+
+@keyframes progressMove {
+  0% { left: -40%; }
+  100% { left: 100%; }
 }
 
 /* =========================
@@ -386,7 +504,9 @@ body::after {
 
 @media (prefers-reduced-motion: reduce) {
   body::before,
-  body::after {
+  body::after,
+  .stars span,
+  .progress::after {
     animation: none;
   }
 }
