@@ -10,17 +10,14 @@
 
 <body>
 
-<!-- FLOATING PIXEL STARS -->
-<div class="stars">
-  <span>✦</span>
-  <span>✧</span>
-  <span>★</span>
-  <span>✦</span>
-  <span>✧</span>
-</div>
-
 <div class="desktop">
 
+  <!-- FLOATING PIXEL STARS (place star.gif in /img/) -->
+  <img src="img/star.gif" alt="" class="floating-star star1">
+  <img src="img/star.gif" alt="" class="floating-star star2">
+  <img src="img/star.gif" alt="" class="floating-star star3">
+
+  <!-- WINDOW CONTAINER -->
   <div class="window">
 
     <!-- TOP BAR -->
@@ -30,13 +27,20 @@
         <span class="dot yellow"></span>
         <span class="dot green"></span>
       </div>
-
       <div class="window-title">DJ RAYVINO — LIVE</div>
 
+      <!-- BLINKING ONLINE INDICATOR -->
       <div class="window-status">
-        <span class="online-dot"></span>
-        <span class="online-text">ONLINE</span>
+        <span class="online-dot" aria-hidden="true"></span>
+        ONLINE ● SYSTEM ACTIVE
       </div>
+    </div>
+
+    <!-- MYSPACE-STYLE MUSIC BAR -->
+    <div class="music-bar" role="region" aria-label="Music player">
+      <div class="player-left">▶ Now Playing:</div>
+      <div class="player-track" aria-label="Track title">Lorem Ipsum — Demo Track</div>
+      <div class="player-controls" aria-hidden="true">▮▮ ▷ ▷</div>
     </div>
 
     <div class="window-body">
@@ -50,7 +54,7 @@
           <p class="status">Currently: Lorem ipsum dolor sit amet.</p>
         </div>
 
-        <nav class="nav-links">
+        <nav class="nav-links" aria-label="Primary navigation">
           <a href="#">/ABOUT</a>
           <a href="#">/SERVICES</a>
           <a href="#">/PORTFOLIO</a>
@@ -70,19 +74,15 @@
 
       </aside>
 
-      <!-- MAIN -->
+      <!-- MAIN CONTENT -->
       <main class="main">
 
         <!-- HERO -->
         <section class="hero">
           <div class="hero-overlay"></div>
           <div class="hero-content">
-            <h1 class="glitch" data-text="SELECT. TRANSMIT. MOVE.">
-              SELECT. TRANSMIT. MOVE.
-            </h1>
-
+            <h1>SELECT. TRANSMIT. MOVE.</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-
             <div class="hero-buttons">
               <a href="#" class="btn primary">VIEW PORTFOLIO</a>
               <a href="#" class="btn secondary">BOOK NOW</a>
@@ -93,7 +93,7 @@
         <!-- ABOUT PREVIEW -->
         <section class="section">
           <h3>ABOUT THE SELECTOR</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut eros vitae massa tempor ullamcorper.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut eros vitae massa tempor ullamcorper. Integer non luctus lorem. Sed sit amet.</p>
           <a href="#" class="link">FULL BIO →</a>
         </section>
 
@@ -108,7 +108,7 @@
           </ul>
         </section>
 
-        <!-- TERMINAL -->
+        <!-- JOURNAL PREVIEW -->
         <section class="section terminal">
           <p>> log_02.27.26</p>
           <p>> Lorem ipsum dolor sit amet</p>
@@ -121,14 +121,6 @@
 
   </div>
 
-</div>
-
-<!-- MYSPACE STYLE MUSIC BAR -->
-<div class="music-bar">
-  <div class="track-info">
-    ▶ Now Playing: demo_track.mp3
-  </div>
-  <div class="progress"></div>
 </div>
 
 </body>
