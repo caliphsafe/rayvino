@@ -12,7 +12,13 @@
   --purple:#6a0dad;
   --blue:#2a6cff;
   --white:#f2f2f2;
-  --gray:#9a9a9a;
+
+  /* NEW border / frame system (Option 2) */
+  --outline: rgba(255,255,255,.10);
+  --stitch: rgba(255,255,255,.14);
+  --neon-a: rgba(193,18,31,.45);  /* red */
+  --neon-b: rgba(42,108,255,.40); /* blue */
+  --neon-c: rgba(106,13,173,.45); /* purple */
 
   --font-primary:'Inter',sans-serif;
   --font-retro:'Courier New',monospace;
@@ -33,14 +39,20 @@
 
 body{
   font-family:var(--font-primary);
-  background: var(--black-stage);
   color:var(--white);
   min-height:100vh;
   position:relative;
   overflow-x:hidden;
-
-  /* MySpace-ish cursor */
   cursor: crosshair;
+
+  /* BACKGROUND TILE + GLOW */
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(106,13,173,.22), transparent 60%),
+    radial-gradient(circle at 70% 65%, rgba(42,108,255,.10), transparent 55%),
+    url("img/bg_tile.png");
+  background-size: auto, auto, 220px 220px;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-attachment: fixed;
 }
 
 a, .btn, .icon-btn, .top8-card, .file-list li{ cursor:pointer; }
@@ -50,19 +62,8 @@ a, .btn, .icon-btn, .top8-card, .file-list li{ cursor:pointer; }
 .sep{ opacity:.6; margin:0 6px; }
 
 /* =========================
-   BACKGROUND TILE + GLOW + GRAIN
+   ANIMATED GRAIN
 ========================= */
-
-/* OPTIONAL: if you add img/bg_tile.png (small repeating pattern) it will look super old-web */
-body{
-  background-image:
-    radial-gradient(circle at 30% 30%, rgba(106,13,173,.22), transparent 60%),
-    radial-gradient(circle at 70% 65%, rgba(42,108,255,.10), transparent 55%),
-    url("img/bg_tile.png");
-  background-size: auto, auto, 220px 220px;
-  background-repeat: no-repeat, no-repeat, repeat;
-  background-attachment: fixed;
-}
 
 @keyframes grain{
   0%{transform:translate(0,0)}
@@ -115,21 +116,43 @@ body::after{
 @keyframes float4{from{transform:translate(0,0)}to{transform:translate(-10px,18px)}}
 
 /* =========================
-   WINDOW / CHROME
+   WINDOW / NEON FRAME (Option 2)
 ========================= */
 
 .window{
   width:100%;
   max-width:1120px;
   background:var(--deep-navy);
-  border:2px solid var(--gray);
+  border: 1px solid var(--outline);
   box-shadow:
-    0 0 30px rgba(106,13,173,.30),
+    0 0 0 1px rgba(0,0,0,.55),
+    0 0 22px rgba(106,13,173,.22),
+    0 0 30px rgba(42,108,255,.12),
     inset 0 0 0 1px rgba(255,255,255,.06);
   overflow:hidden;
   position:relative;
   z-index:2;
 }
+
+/* neon frame layer */
+.window::before{
+  content:"";
+  position:absolute;
+  inset:6px;
+  pointer-events:none;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,.35),
+    0 0 18px var(--neon-c),
+    0 0 12px var(--neon-b),
+    0 0 10px var(--neon-a);
+  opacity:.55;
+  mix-blend-mode: screen;
+}
+
+/* =========================
+   WINDOW BAR (Retro Chrome)
+========================= */
 
 .window-bar{
   display:flex;
@@ -137,10 +160,12 @@ body::after{
   justify-content:space-between;
   padding:8px 12px;
   background:linear-gradient(to bottom,#2a2a2a,#101010);
-  border-bottom:2px solid var(--gray);
+  border-bottom: 1px solid rgba(255,255,255,.10);
   font-size:12px;
   font-family:var(--font-retro);
   letter-spacing:1px;
+  position:relative;
+  z-index:3;
 }
 
 .window-controls{display:flex;gap:6px;}
@@ -174,7 +199,7 @@ body::after{
 }
 
 /* =========================
-   MUSIC BAR (MYSPACE WIDGET FEEL)
+   MUSIC BAR (MySpace Widget)
 ========================= */
 
 .music-bar{
@@ -182,17 +207,18 @@ body::after{
   align-items:center;
   justify-content:space-between;
   padding:6px 12px;
-  border-bottom:2px solid var(--gray);
-  background:
-    linear-gradient(to bottom, #0b0b0b, #050505);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  background: linear-gradient(to bottom, #0b0b0b, #050505);
   font-family:var(--font-retro);
   font-size:12px;
+  position:relative;
+  z-index:3;
 }
 
 .chip{
   display:inline-block;
   padding:2px 6px;
-  border:1px solid var(--gray);
+  border:1px solid rgba(255,255,255,.16);
   background:#101010;
   color:var(--red);
   margin-right:8px;
@@ -214,7 +240,7 @@ body::after{
 .music-right{display:flex;gap:6px;}
 .btn-mini{
   padding:2px 6px;
-  border:1px solid var(--gray);
+  border:1px solid rgba(255,255,255,.16);
   background:#111;
 }
 .btn-mini:hover{
@@ -223,7 +249,7 @@ body::after{
 }
 
 /* =========================
-   PROFILE STRIP (MYSPACE HEADER FEEL)
+   PROFILE STRIP
 ========================= */
 
 .profile-strip{
@@ -231,7 +257,7 @@ body::after{
   justify-content:space-between;
   align-items:center;
   padding:10px 12px;
-  border-bottom:2px solid var(--gray);
+  border-bottom: 1px solid rgba(255,255,255,.10);
   background:
     linear-gradient(to right,
       rgba(193,18,31,.18),
@@ -239,13 +265,15 @@ body::after{
       rgba(106,13,173,.16));
   font-family:var(--font-retro);
   font-size:12px;
+  position:relative;
+  z-index:3;
 }
 
 .strip-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .label{opacity:.8}
 .name{color:var(--white);font-weight:700;letter-spacing:1px}
 .badge{
-  border:1px solid var(--gray);
+  border:1px solid rgba(255,255,255,.16);
   padding:2px 6px;
   background:#0a0a0a;
   color:var(--blue);
@@ -260,24 +288,47 @@ body::after{
 .window-body{
   display:grid;
   grid-template-columns: 280px 1fr;
+  position:relative;
+  z-index:3;
 }
 
 /* =========================
-   PANELS (MYSPACE TABLE MODULES)
+   PANELS (pixel stitch border)
 ========================= */
 
+.panel,
+.hero,
+.footer,
+.comments-table{
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.55),
+    inset 0 0 0 2px rgba(255,255,255,.04);
+  position:relative;
+}
+
+/* stitched overlay */
+.panel::after,
+.hero::after,
+.footer::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border: 1px dashed var(--stitch);
+  opacity:.55;
+}
+
+/* Panel base */
 .panel{
-  border:2px solid var(--gray);
   background:var(--panel);
   margin-bottom:12px;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.05);
 }
 
 .panel-title{
   padding:6px 10px;
   background:linear-gradient(to bottom,#2c2c2c,#141414);
-  border-bottom:2px solid var(--gray);
+  border-bottom: 1px solid rgba(255,255,255,.10);
   font-family:var(--font-retro);
   letter-spacing:1px;
   text-transform:uppercase;
@@ -293,7 +344,6 @@ body::after{
 
 .center{text-align:center;}
 .mt8{margin-top:8px;}
-
 .main-panel{ margin-bottom:18px; }
 
 /* =========================
@@ -302,15 +352,14 @@ body::after{
 
 .sidebar{
   padding:12px;
-  border-right:2px solid var(--gray);
+  border-right: 1px solid rgba(255,255,255,.10);
   background: var(--panel2);
 }
 
 .profile-logo{
   width:100%;
-  border:2px solid var(--gray);
+  border: 1px solid rgba(255,255,255,.14);
   margin-bottom:10px;
-  image-rendering:auto;
 }
 
 .bigname{
@@ -338,7 +387,7 @@ body::after{
 .icon-btn{
   width:34px;height:34px;
   display:grid;place-items:center;
-  border:2px solid var(--gray);
+  border: 1px solid rgba(255,255,255,.14);
   background:#0b0b0b;
   color:var(--blue);
   text-decoration:none;
@@ -350,7 +399,7 @@ body::after{
   box-shadow:0 0 12px rgba(193,18,31,.35);
 }
 
-/* NAV LINKS — make them feel like old buttons */
+/* NAV LINKS */
 .nav-links{
   display:flex;
   flex-direction:column;
@@ -359,7 +408,7 @@ body::after{
 
 .nav-links a{
   padding:8px 10px;
-  border:2px solid var(--gray);
+  border: 1px solid rgba(255,255,255,.16);
   background:linear-gradient(to bottom,#0f1428,#070a14);
   color:var(--blue);
   text-decoration:underline;
@@ -407,17 +456,18 @@ body::after{
 .hero{
   position:relative;
   height:360px;
-  border:2px solid var(--gray);
   margin-bottom:18px;
   background:url("hero.jpg") center/cover no-repeat;
   overflow:hidden;
+  transition: filter .2s;
 }
+
+.hero:hover{ filter:brightness(1.1) contrast(1.05); }
 
 .hero-overlay{
   position:absolute;
   inset:0;
-  background:
-    linear-gradient(to bottom, rgba(0,0,0,.65), rgba(106,13,173,.32));
+  background:linear-gradient(to bottom, rgba(0,0,0,.65), rgba(106,13,173,.32));
 }
 
 .hero-content{
@@ -441,7 +491,7 @@ body::after{
   font-size:14px;
 }
 
-/* Glitch title (stronger + more myspace) */
+/* Glitch title */
 .glitch-title{
   font-family:var(--font-retro);
   font-size:34px;
@@ -476,9 +526,7 @@ body::after{
   clip-path: inset(45% 0 0 0);
 }
 
-.glitch-title:hover{
-  animation:glitch 0.25s infinite;
-}
+.glitch-title:hover{ animation:glitch .25s infinite; }
 
 @keyframes glitch{
   0%{text-shadow:2px 0 var(--red), -2px 0 var(--blue)}
@@ -495,7 +543,7 @@ body::after{
 
 .btn{
   padding:10px 14px;
-  border:2px solid var(--gray);
+  border: 1px solid rgba(255,255,255,.16);
   font-family:var(--font-retro);
   font-weight:800;
   letter-spacing:1px;
@@ -510,10 +558,9 @@ body::after{
 .btn.primary{ background:var(--red); }
 .btn.primary:hover{ box-shadow:0 0 16px rgba(193,18,31,.35); }
 
-.btn.secondary{ background:#0b0b0b; color:var(--white); }
 .btn.secondary:hover{ background:var(--white); color:#000; }
 
-.btn.tertiary{ background:rgba(42,108,255,.15); color:var(--white); }
+.btn.tertiary{ background:rgba(42,108,255,.15); }
 .btn.tertiary:hover{ background:var(--blue); }
 
 /* Two-column blurbs */
@@ -522,7 +569,6 @@ body::after{
   grid-template-columns: 1fr 1fr;
   gap:14px;
 }
-
 .blurb p{ margin-top:6px; opacity:.92; }
 
 /* Services list */
@@ -555,13 +601,14 @@ body::after{
 }
 
 .top8-card{
-  border:2px solid var(--gray);
+  border: 1px solid rgba(255,255,255,.14);
   background:#070707;
   padding:8px;
   text-decoration:none;
   color:var(--white);
   font-family:var(--font-retro);
   text-align:center;
+  transition: transform .15s, box-shadow .15s;
 }
 
 .top8-pic{
@@ -588,14 +635,14 @@ body::after{
 
 /* Comments table */
 .comments-table{
-  border:2px solid rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.14);
+  background:#070a14;
 }
 
 .comment-row{
   display:grid;
   grid-template-columns: 140px 1fr;
   border-bottom:1px solid rgba(255,255,255,.12);
-  background:#070a14;
 }
 
 .comment-user{
@@ -625,7 +672,6 @@ body::after{
 .footer{
   margin-top:18px;
   padding:10px;
-  border:2px solid var(--gray);
   background:#0b0b0b;
 }
 
@@ -635,10 +681,13 @@ body::after{
 
 @media (max-width: 980px){
   .window-body{ grid-template-columns: 1fr; }
-  .sidebar{ border-right:none; border-bottom:2px solid var(--gray); }
+  .sidebar{ border-right:none; border-bottom: 1px solid rgba(255,255,255,.10); }
   .two-col{ grid-template-columns:1fr; }
   .top8{ grid-template-columns: repeat(2, minmax(0,1fr)); }
   .comment-row{ grid-template-columns: 120px 1fr; }
+
+  /* keep neon frame from crushing on small screens */
+  .window::before{ inset:4px; }
 }
 
 /* =========================
