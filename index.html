@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>DJ RAYVINO — Live System</title>
+<title>DJ RAYVINO — MySpace Transmission</title>
 <link rel="stylesheet" href="styles.css" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -12,35 +12,63 @@
 
 <div class="desktop">
 
-  <!-- FLOATING PIXEL STARS (place star.gif in /img/) -->
+  <!-- FLOATING PIXEL STARS (optional) -->
   <img src="img/star.gif" alt="" class="floating-star star1">
   <img src="img/star.gif" alt="" class="floating-star star2">
   <img src="img/star.gif" alt="" class="floating-star star3">
+  <img src="img/star.gif" alt="" class="floating-star star4">
 
-  <!-- WINDOW CONTAINER -->
   <div class="window">
 
     <!-- TOP BAR -->
     <div class="window-bar">
-      <div class="window-controls">
+      <div class="window-controls" aria-hidden="true">
         <span class="dot red"></span>
         <span class="dot yellow"></span>
         <span class="dot green"></span>
       </div>
-      <div class="window-title">DJ RAYVINO — LIVE</div>
 
-      <!-- BLINKING ONLINE INDICATOR -->
+      <div class="window-title">
+        DJ RAYVINO — <span class="blink">MYSPACE MODE</span>
+      </div>
+
       <div class="window-status">
         <span class="online-dot" aria-hidden="true"></span>
-        ONLINE ● SYSTEM ACTIVE
+        <span class="blink-soft">ONLINE</span>
+        <span class="sep">|</span>
+        SYSTEM ACTIVE
       </div>
     </div>
 
-    <!-- MYSPACE-STYLE MUSIC BAR -->
+    <!-- MYSPACE-STYLE MUSIC WIDGET BAR -->
     <div class="music-bar" role="region" aria-label="Music player">
-      <div class="player-left">▶ Now Playing:</div>
-      <div class="player-track" aria-label="Track title">Lorem Ipsum — Demo Track</div>
-      <div class="player-controls" aria-hidden="true">▮▮ ▷ ▷</div>
+      <div class="music-left">
+        <span class="chip">▶ NOW PLAYING</span>
+        <span class="track-title">Lorem Ipsum — Demo Track</span>
+      </div>
+
+      <div class="music-right" aria-hidden="true">
+        <span class="btn-mini">◄◄</span>
+        <span class="btn-mini">►</span>
+        <span class="btn-mini">▮▮</span>
+        <span class="btn-mini">►►</span>
+      </div>
+    </div>
+
+    <!-- PROFILE HEADER STRIP (VERY MYSPACE) -->
+    <div class="profile-strip" role="banner">
+      <div class="strip-left">
+        <span class="label">PROFILE:</span>
+        <span class="name">DJ RAYVINO</span>
+        <span class="badge">LOSERCORE</span>
+        <span class="badge purple">INDIE SLEAZE</span>
+      </div>
+
+      <div class="strip-right">
+        <span class="tiny">Last Login:</span> <span class="tiny dim">Lorem Ipsum</span>
+        <span class="sep">|</span>
+        <span class="tiny">Mood:</span> <span class="tiny dim">Lorem Ipsum</span>
+      </div>
     </div>
 
     <div class="window-body">
@@ -48,28 +76,69 @@
       <!-- SIDEBAR -->
       <aside class="sidebar">
 
-        <div class="profile-module">
-          <img src="img/rayvino_logo.png" alt="DJ RAYVINO Logo" class="profile-logo">
-          <h2>DJ RAYVINO</h2>
-          <p class="status">Currently: Lorem ipsum dolor sit amet.</p>
+        <!-- PROFILE CARD -->
+        <div class="panel">
+          <div class="panel-title">RAYVINO CARD</div>
+          <div class="panel-body center">
+            <img src="img/rayvino_logo.png" alt="DJ RAYVINO Logo" class="profile-logo">
+            <div class="bigname">DJ RAYVINO</div>
+            <div class="tiny dim">Status:</div>
+            <div class="status-line">
+              <span class="spark">✦</span> <span class="blink-soft">Currently:</span> Lorem ipsum dolor sit amet.
+            </div>
+          </div>
         </div>
 
-        <nav class="nav-links" aria-label="Primary navigation">
-          <a href="#">/ABOUT</a>
-          <a href="#">/SERVICES</a>
-          <a href="#">/PORTFOLIO</a>
-          <a href="#">/JOURNAL</a>
-          <a href="#">/BOOKING</a>
-        </nav>
-
-        <div class="module">
-          <h4>NEXT SET</h4>
-          <p>Lorem ipsum dolor sit amet.<br>Lorem ipsum venue.</p>
+        <!-- CONTACT ICONS (MYSPACE CORE) -->
+        <div class="panel">
+          <div class="panel-title">CONTACT</div>
+          <div class="panel-body">
+            <div class="contact-icons" aria-label="Contact shortcuts">
+              <a href="#" class="icon-btn" title="Message">✉</a>
+              <a href="#" class="icon-btn" title="Add">＋</a>
+              <a href="#" class="icon-btn" title="Follow">★</a>
+              <a href="#" class="icon-btn" title="Share">↗</a>
+              <a href="#" class="icon-btn" title="Block">⊘</a>
+            </div>
+            <div class="tiny dim mt8">Replace links later with real socials/inquiry.</div>
+          </div>
         </div>
 
-        <div class="module">
-          <h4>CURRENTLY LISTENING</h4>
-          <p>Lorem ipsum — Dolor Sit</p>
+        <!-- NAVIGATION -->
+        <div class="panel">
+          <div class="panel-title">NAVIGATION</div>
+          <div class="panel-body">
+            <nav class="nav-links" aria-label="Primary navigation">
+              <a href="#">ABOUT</a>
+              <a href="#">SERVICES</a>
+              <a href="#">PORTFOLIO / RESUME</a>
+              <a href="#">NEWSLETTER / BLOG</a>
+              <a href="#">CONTACT / BOOKING</a>
+            </nav>
+          </div>
+        </div>
+
+        <!-- NEXT SET -->
+        <div class="panel">
+          <div class="panel-title">NEXT SET</div>
+          <div class="panel-body">
+            <div class="tiny dim">DATE:</div>
+            <div>Lorem ipsum</div>
+            <div class="tiny dim mt8">WHERE:</div>
+            <div>Lorem ipsum venue</div>
+          </div>
+        </div>
+
+        <!-- CURRENTLY LISTENING -->
+        <div class="panel">
+          <div class="panel-title">CURRENTLY LISTENING</div>
+          <div class="panel-body">
+            <div class="marquee" aria-label="Scrolling text">
+              <div class="marquee-track">
+                ✦ Lorem ipsum — dolor sit ✦ Lorem ipsum — dolor sit ✦ Lorem ipsum — dolor sit ✦
+              </div>
+            </div>
+          </div>
         </div>
 
       </aside>
@@ -80,40 +149,108 @@
         <!-- HERO -->
         <section class="hero">
           <div class="hero-overlay"></div>
+
           <div class="hero-content">
-            <h1>SELECT. TRANSMIT. MOVE.</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+            <div class="hero-kicker">WELCOME TO THE PAGE ✦</div>
+            <h1 class="glitch-title" data-text="SELECT. TRANSMIT. MOVE.">SELECT. TRANSMIT. MOVE.</h1>
+            <p class="hero-sub">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+            </p>
+
             <div class="hero-buttons">
               <a href="#" class="btn primary">VIEW PORTFOLIO</a>
               <a href="#" class="btn secondary">BOOK NOW</a>
+              <a href="#" class="btn tertiary">SUBSCRIBE</a>
             </div>
           </div>
         </section>
 
-        <!-- ABOUT PREVIEW -->
-        <section class="section">
-          <h3>ABOUT THE SELECTOR</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut eros vitae massa tempor ullamcorper. Integer non luctus lorem. Sed sit amet.</p>
-          <a href="#" class="link">FULL BIO →</a>
+        <!-- BLURBS (MYSPACE) -->
+        <section class="panel main-panel">
+          <div class="panel-title">BLURBS</div>
+          <div class="panel-body">
+            <div class="two-col">
+              <div class="blurb">
+                <div class="tiny dim">ABOUT:</div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut eros vitae massa tempor ullamcorper.</p>
+              </div>
+              <div class="blurb">
+                <div class="tiny dim">BOOKING:</div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non luctus lorem. Sed sit amet.</p>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <!-- SERVICES -->
-        <section class="section">
-          <h3>SERVICES.exe</h3>
-          <ul class="file-list">
-            <li>Live DJ Sets.pkg</li>
-            <li>Private Events.framework</li>
-            <li>Curated Mixes.zip</li>
-            <li>Creative Direction.beta</li>
-          </ul>
+        <!-- TOP 8 (MYSPACE ICONIC) -->
+        <section class="panel main-panel">
+          <div class="panel-title">TOP 8 ✦ FEATURED</div>
+          <div class="panel-body">
+            <div class="top8">
+              <a class="top8-card" href="#"><span class="top8-pic"></span><span class="top8-name">Lorem</span></a>
+              <a class="top8-card" href="#"><span class="top8-pic"></span><span class="top8-name">Ipsum</span></a>
+              <a class="top8-card" href="#"><span class="top8-pic"></span><span class="top8-name">Dolor</span></a>
+              <a class="top8-card" href="#"><span class="top8-pic"></span><span class="top8-name">Sit</span></a>
+              <a class="top8-card" href="#"><span class="top8-pic"></span><span class="top8-name">Amet</span></a>
+              <a class="top8-card" href="#"><span class="top8-pic"></span><span class="top8-name">Consect</span></a>
+              <a class="top8-card" href="#"><span class="top8-pic"></span><span class="top8-name">Adipis</span></a>
+              <a class="top8-card" href="#"><span class="top8-pic"></span><span class="top8-name">Elit</span></a>
+            </div>
+            <div class="tiny dim mt8">These can become: mixes, events, links, press, playlists, etc.</div>
+          </div>
         </section>
 
-        <!-- JOURNAL PREVIEW -->
-        <section class="section terminal">
-          <p>> log_02.27.26</p>
-          <p>> Lorem ipsum dolor sit amet</p>
-          <p>> 8:32PM</p>
+        <!-- SERVICES LIST -->
+        <section class="panel main-panel">
+          <div class="panel-title">SERVICES.exe</div>
+          <div class="panel-body">
+            <ul class="file-list">
+              <li><span class="file-ico">📁</span> Live DJ Sets.pkg</li>
+              <li><span class="file-ico">📁</span> Private Events.framework</li>
+              <li><span class="file-ico">📁</span> Curated Mixes.zip</li>
+              <li><span class="file-ico">📁</span> Creative Direction.beta</li>
+            </ul>
+          </div>
         </section>
+
+        <!-- COMMENTS (MYSPACE WALL) -->
+        <section class="panel main-panel">
+          <div class="panel-title">COMMENTS</div>
+          <div class="panel-body">
+            <div class="comments-table" role="table" aria-label="Comments">
+              <div class="comment-row" role="row">
+                <div class="comment-user" role="cell">
+                  <div class="comment-pic"></div>
+                  <div class="tiny dim">User</div>
+                </div>
+                <div class="comment-body" role="cell">
+                  <div class="tiny dim">Date: Lorem ipsum</div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod.</p>
+                </div>
+              </div>
+
+              <div class="comment-row" role="row">
+                <div class="comment-user" role="cell">
+                  <div class="comment-pic"></div>
+                  <div class="tiny dim">User</div>
+                </div>
+                <div class="comment-body" role="cell">
+                  <div class="tiny dim">Date: Lorem ipsum</div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut eros.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="tiny dim mt8">Later we can connect this to a real newsletter/blog or guestbook.</div>
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+          <div class="tiny dim">
+            DJ RAYVINO OS v1.0 • MySpace Mode • Black/Red/Blue/Purple • Techy Maximalism
+          </div>
+        </footer>
 
       </main>
 
