@@ -4,7 +4,7 @@
 
 :root {
 
-  /* COLORS */
+  /* Colors */
   --black-stage: #05050a;
   --deep-navy: #0b0f1f;
   --red-accent: #c1121f;
@@ -13,24 +13,24 @@
   --white-text: #f2f2f2;
   --chrome-gray: #9a9a9a;
 
-  /* TYPOGRAPHY */
+  /* Typography */
   --font-primary: 'Inter', sans-serif;
   --font-retro: 'Courier New', monospace;
 
-  /* SPACING SYSTEM */
+  /* Spacing */
   --space-xs: 6px;
   --space-sm: 12px;
   --space-md: 20px;
   --space-lg: 32px;
   --space-xl: 60px;
 
-  /* RADIUS */
+  /* Radius (reduced for older web feel) */
   --radius-md: 6px;
 
 }
 
 /* =========================
-   BASE RESET
+   BASE
 ========================= */
 
 * {
@@ -47,16 +47,17 @@ body {
   position: relative;
   overflow-x: hidden;
 
-  /* Custom retro cursor */
-  cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur116.cur'), auto;
+  /* Subtle cursor fallback (use custom cursor files if you have them) */
+  cursor: crosshair;
 }
 
+/* Hover cursor for interactive elements */
 a, .btn, .file-list li {
   cursor: pointer;
 }
 
 /* =========================
-   STAGE GLOW ANIMATION
+   STAGE GLOW (SUBTLE)
 ========================= */
 
 body::before {
@@ -101,38 +102,6 @@ body::after {
 }
 
 /* =========================
-   FLOATING PIXEL STARS
-========================= */
-
-.stars {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 5;
-  font-family: var(--font-retro);
-  color: var(--purple-glow);
-}
-
-.stars span {
-  position: absolute;
-  animation: floatStars 12s linear infinite;
-  font-size: 14px;
-  opacity: 0.6;
-}
-
-.stars span:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
-.stars span:nth-child(2) { top: 40%; left: 70%; animation-delay: 3s; }
-.stars span:nth-child(3) { top: 75%; left: 30%; animation-delay: 6s; }
-.stars span:nth-child(4) { top: 20%; left: 85%; animation-delay: 2s; }
-.stars span:nth-child(5) { top: 60%; left: 5%; animation-delay: 4s; }
-
-@keyframes floatStars {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
-}
-
-/* =========================
    DESKTOP WRAPPER
 ========================= */
 
@@ -140,10 +109,58 @@ body::after {
   display: flex;
   justify-content: center;
   padding: var(--space-lg);
+  position: relative;
 }
 
 /* =========================
-   WINDOW
+   FLOATING PIXEL STARS
+   (place star.gif in /img/)
+========================= */
+
+.floating-star {
+  position: fixed;
+  width: 18px;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 1;
+  image-rendering: pixelated;
+}
+
+.star1 {
+  top: 10%;
+  left: 5%;
+  animation: float1 12s infinite alternate ease-in-out;
+}
+
+.star2 {
+  top: 60%;
+  right: 10%;
+  animation: float2 18s infinite alternate ease-in-out;
+}
+
+.star3 {
+  bottom: 15%;
+  left: 30%;
+  animation: float3 14s infinite alternate ease-in-out;
+}
+
+@keyframes float1 {
+  from { transform: translateY(0); }
+  to { transform: translateY(20px); }
+}
+
+@keyframes float2 {
+  from { transform: translateY(0); }
+  to { transform: translateY(-25px); }
+}
+
+@keyframes float3 {
+  from { transform: translateY(0); }
+  to { transform: translateY(15px); }
+}
+
+/* =========================
+   WINDOW (More Old Web)
 ========================= */
 
 .window {
@@ -155,10 +172,12 @@ body::after {
     0 0 30px rgba(106, 13, 173, 0.3),
     inset 0 0 10px rgba(255,255,255,0.05);
   overflow: hidden;
+  position: relative;
+  z-index: 2;
 }
 
 /* =========================
-   WINDOW BAR
+   WINDOW BAR (Retro Feel)
 ========================= */
 
 .window-bar {
@@ -192,26 +211,67 @@ body::after {
   text-transform: uppercase;
 }
 
-/* ONLINE BLINK */
+/* Blinking Online Indicator */
+.window-status {
+  font-size: 11px;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
 .online-dot {
+  display: inline-block;
   width: 8px;
   height: 8px;
   background: #00ff66;
   border-radius: 50%;
-  display: inline-block;
-  margin-right: 6px;
-  animation: blink 1s infinite;
+  animation: blink 1.2s infinite;
 }
 
 @keyframes blink {
   0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
+  25%, 75% { opacity: 0.2; }
 }
 
-.online-text {
-  font-size: 11px;
+/* =========================
+   MYSPACE-STYLE MUSIC BAR
+========================= */
+
+.music-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0a0a0a;
+  border-bottom: 2px solid var(--chrome-gray);
+  padding: 6px 12px;
   font-family: var(--font-retro);
+  font-size: 12px;
+  color: var(--white-text);
+}
+
+.player-left {
+  color: var(--red-accent);
+  white-space: nowrap;
+}
+
+.player-track {
+  color: var(--blue-link);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 55%;
+  animation: scrollTrack 8s linear infinite;
+}
+
+.player-controls {
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+@keyframes scrollTrack {
+  0% { transform: translateX(10%); }
+  100% { transform: translateX(-10%); }
 }
 
 /* =========================
@@ -224,7 +284,7 @@ body::after {
 }
 
 /* =========================
-   SIDEBAR
+   SIDEBAR (More MySpace)
 ========================= */
 
 .sidebar {
@@ -255,6 +315,8 @@ body::after {
   opacity: 0.7;
 }
 
+/* NAV LINKS (Old Web Style) */
+
 .nav-links {
   display: flex;
   flex-direction: column;
@@ -263,7 +325,10 @@ body::after {
 }
 
 .nav-links a {
-  text-decoration: underline;
+  padding: 6px 8px;
+  background: #0f1428;
+  border: 1px solid var(--chrome-gray);
+  text-decoration: none;
   color: var(--blue-link);
   font-weight: 600;
   font-family: var(--font-retro);
@@ -271,9 +336,12 @@ body::after {
 }
 
 .nav-links a:hover {
-  color: var(--red-accent);
-  text-shadow: 0 0 6px var(--red-accent);
+  background: var(--red-accent);
+  color: white;
+  text-shadow: 0 0 6px rgba(0,0,0,0.35);
 }
+
+/* MODULE BOXES */
 
 .module {
   margin-bottom: var(--space-md);
@@ -308,6 +376,11 @@ body::after {
   margin-bottom: var(--space-xl);
   border: 2px solid var(--chrome-gray);
   background: url('hero.jpg') center/cover no-repeat;
+  transition: filter 0.2s;
+}
+
+.hero:hover {
+  filter: brightness(1.1) contrast(1.05);
 }
 
 .hero-overlay {
@@ -326,44 +399,42 @@ body::after {
   max-width: 550px;
 }
 
-/* GLITCH EFFECT */
-
-.glitch {
-  position: relative;
+/* Glitch hover effect */
+.hero h1 {
   font-size: 36px;
   margin-bottom: var(--space-sm);
   text-transform: uppercase;
   letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
 }
 
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  width: 100%;
-  opacity: 0;
+.hero h1:hover {
+  animation: glitch 0.3s infinite;
 }
 
-.glitch:hover::before {
-  color: var(--red-accent);
-  transform: translate(-2px, -2px);
-  opacity: 0.8;
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 var(--red-accent),
+                 -2px 0 var(--blue-link);
+  }
+  50% {
+    text-shadow: -2px 0 var(--red-accent),
+                  2px 0 var(--blue-link);
+  }
+  100% {
+    text-shadow: 2px 0 var(--purple-glow),
+                 -2px 0 var(--blue-link);
+  }
 }
-
-.glitch:hover::after {
-  color: var(--blue-link);
-  transform: translate(2px, 2px);
-  opacity: 0.8;
-}
-
-/* BUTTONS */
 
 .hero-buttons {
   margin-top: var(--space-md);
   display: flex;
   gap: var(--space-sm);
 }
+
+/* BUTTONS (Less Modern, More Bold) */
 
 .btn {
   padding: 10px 18px;
@@ -411,6 +482,8 @@ body::after {
   color: var(--purple-glow);
 }
 
+/* FILE LIST */
+
 .file-list {
   list-style: none;
   font-family: var(--font-retro);
@@ -419,10 +492,6 @@ body::after {
 .file-list li {
   padding: 6px 0;
   border-bottom: 1px dotted var(--chrome-gray);
-}
-
-.file-list li:hover {
-  color: var(--red-accent);
 }
 
 /* TERMINAL */
@@ -434,51 +503,6 @@ body::after {
   font-size: 12px;
   color: #00ff88;
   border: 2px solid var(--chrome-gray);
-}
-
-/* =========================
-   MUSIC BAR
-========================= */
-
-.music-bar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: linear-gradient(to top, #111, #1a1a1a);
-  border-top: 2px solid var(--chrome-gray);
-  padding: 8px 16px;
-  font-family: var(--font-retro);
-  font-size: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 50;
-}
-
-.track-info {
-  color: var(--red-accent);
-}
-
-.progress {
-  width: 200px;
-  height: 4px;
-  background: #333;
-  position: relative;
-  overflow: hidden;
-}
-
-.progress::after {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 40%;
-  background: var(--purple-glow);
-  animation: progressMove 6s linear infinite;
-}
-
-@keyframes progressMove {
-  0% { left: -40%; }
-  100% { left: 100%; }
 }
 
 /* =========================
@@ -496,6 +520,9 @@ body::after {
     border-bottom: 2px solid var(--chrome-gray);
   }
 
+  .player-track {
+    max-width: 45%;
+  }
 }
 
 /* =========================
@@ -505,8 +532,10 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   body::before,
   body::after,
-  .stars span,
-  .progress::after {
-    animation: none;
+  .player-track,
+  .floating-star,
+  .online-dot,
+  .hero h1:hover {
+    animation: none !important;
   }
 }
